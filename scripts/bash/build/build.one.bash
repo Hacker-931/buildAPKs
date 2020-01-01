@@ -158,18 +158,17 @@ if [[ -w "/storage/emulated/0/" ]] || [[ -w "/storage/emulated/legacy/" ]]
 then
 	if [[ -w "/storage/emulated/0/" ]]
 	then
-		[[ ! -d "/storage/emulated/0/Download/builtAPKs/$JID.$DAY" ]] && mkdir -p "/storage/emulated/0/Download/builtAPKs/$JID.$DAY"
+		[ ! -d "/storage/emulated/0/Download/builtAPKs/$JID.$DAY" ] && mkdir -p "/storage/emulated/0/Download/builtAPKs/$JID.$DAY"
 		cp "$PKGNAM.apk" "/storage/emulated/0/Download/builtAPKs/$JID.$DAY/$PKGNAME.apk"
-	fi
-	if [[ -w "/storage/emulated/legacy/" ]]
+	elif [[ -w "/storage/emulated/legacy/" ]]
 	then
-		[[ ! -d "/storage/emulated/legacy/Download/builtAPKs/$JID.$DAY" ]] && mkdir -p "/storage/emulated/legacy/Download/builtAPKs/$JID.$DAY"
+		[ ! -d "/storage/emulated/legacy/Download/builtAPKs/$JID.$DAY" ] && mkdir -p "/storage/emulated/legacy/Download/builtAPKs/$JID.$DAY"
 		cp "$PKGNAM.apk" "/storage/emulated/legacy/Download/builtAPKs/$JID.$DAY/$PKGNAME.apk"
 	fi
 	printf "\\e[1;38;5;115mCopied %s to Download/builtAPKs/%s/%s.apk\\n" "$PKGNAM.apk" "$JID.$DAY" "$PKGNAME"
 	printf "\\e[1;38;5;149mThe APK %s file can be installed from Download/builtAPKs/%s/%s.apk\\n" "$PKGNAM.apk" "$JID.$DAY" "$PKGNAME"
 else
-	[[ ! -d "$RDR/var/cache/builtAPKs/$JID.$DAY" ]] && mkdir -p "$RDR/var/cache/builtAPKs/$JID.$DAY"
+	[ ! -d "$RDR/var/cache/builtAPKs/$JID.$DAY" ] && mkdir -p "$RDR/var/cache/builtAPKs/$JID.$DAY"
 	cp "$PKGNAM.apk" "$RDR/var/cache/builtAPKs/$JID.$DAY/$PKGNAME.apk"
 	printf "\\e[1;38;5;120mCopied %s to $RDR/var/cache/builtAPKs/%s/%s.apk\\n" "$PKGNAM.apk" "$JID.$DAY" "$PKGNAME"
 	printf "\\e[1;38;5;154mThe APK %s file can be installed from ~/${RDR##*/}/var/cache/builtAPKs/%s/%s.apk\\n" "$PKGNAM.apk" "$JID.$DAY" "$PKGNAME"
