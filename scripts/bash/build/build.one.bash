@@ -16,7 +16,7 @@ _SBOTRPERROR_() { # run on script error
 
 _SBOTRPEXIT_() { # run on exit
 	local RV="$?"
-	[ "$RV" != 0 ] && [ "$RV" != 224 ] && printf "\\e[?25h\\e[1;7;38;5;0mbuildAPKs signal %s received by %s in %s by build.one.bash.  More information in \`%s/var/log/stnderr.%s.log\` file.\\n\\n" "$RV" "${0##*/}" "$PWD" "$RDR" "$JID" && $(printf "%s\\n" "Running: grep --color=always -iC 4 ERROR $RDR/var/log/stnderr.$JID.log | tail ") && $(grep --color=always -iC 4 ERROR "$RDR/var/log/stnderr.$JID.log" | tail) && printf "\\e[0m\\n\\n" 
+	[ "$RV" != 0 ] && [ "$RV" != 224 ] && printf "\\e[?25h\\e[1;7;38;5;0mbuildAPKs signal %s received by %s in %s by build.one.bash.  More information in \`%s/var/log/stnderr.%s.log\` file.\\n\\n" "$RV" "${0##*/}" "$PWD" "$RDR" "$JID" && (printf "%s\\n" "Running: grep --color=always -iC 4 ERROR $RDR/var/log/stnderr.$JID.log | tail ") && (grep --color=always -iC 4 ERROR "$RDR/var/log/stnderr.$JID.log" | tail) && printf "\\e[0m\\n\\n" 
 	[ "$RV" = 223 ] && printf "\\e[?25h\\e[1;7;38;5;0mSignal 223 generated in %s; Try running %s again; This error can be resolved by running %s in a directory that has an \`AndroidManifest.xml\` file.  More information in \`stnderr*.log\` files.\\n\\nRunning \`ls\`:\\e[0m\\n" "$PWD" "${0##*/}" "${0##*/}" && ls
 	[ "$RV" = 224 ] && printf "\\e[?25h\\e[1;7;38;5;0mSignal 224 generated in %s;  Cannot run in folder %s; %s exiting...\\e[0m\\n" "$PWD" "$PWD" "${0##*/} build.one.bash"
 	[ "$RV" != 224 ] &&  _CLEANUP_
