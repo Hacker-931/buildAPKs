@@ -45,9 +45,7 @@ _CLEANUP_ () {
 	sleep 0.032 
 	printf "\\e[1;38;5;151m%s\\n\\e[0m" "Completing tasks..."
 	rm -f *-debug.key 
- 	rm -rf ./bin 
-	rm -rf ./gen 
- 	rm -rf ./obj 
+ 	rm -rf ./bin ./gen ./obj 
 	find . -name R.java -exec rm -f { } \;
 	printf "\\e[1;38;5;151mCompleted tasks in %s\\n\\n\\e[0m" "$PWD"
 }
