@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Copyright 2017-2019 (c) all rights reserved by S D Rausty 
+# Copyright 2017-2020 (c) all rights reserved by S D Rausty 
 # Adapted from https://github.com/fx-adi-lima/android-tutorials
 #####################################################################
 set -Eeuo pipefail
