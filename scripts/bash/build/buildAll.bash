@@ -5,27 +5,27 @@
 set -Eeuo pipefail
 shopt -s nullglob globstar
 
-_SETRPERROR_() { # Run on script error.
+_SETRPERROR_() { # run on script error
 	local RV="$?"
 	printf "\\e[?25h\\e[1;7;38;5;0mbuildAPKs %s ERROR:  Signal %s received!\\e[0m\\n" "${0##*/}" "$RV"
 	echo exit 201
 	exit 201
 }
 
-_SETRPEXIT_() { # Run on exi
+_SETRPEXIT_() { # run on exit
 	printf "\\e[?25h\\e[0m"
 	set +Eeuo pipefail 
 	exit
 }
 
-_SETRPSIGNAL_() { # Run on signal.
+_SETRPSIGNAL_() { # run on signal
 	local RV="$?"
 	printf "\\e[?25h\\e[1;7;38;5;0mbuildAPKs %s WARNING:  Signal %s received!\\e[0m\\n" "${0##*/}" "$RV"
 	echo exit 211
  	exit 211 
 }
 
-_SETRPQUIT_() { # Run on quit.
+_SETRPQUIT_() { # run on quit
 	local RV="$?"
 	printf "\\e[?25h\\e[1;7;38;5;0mbuildAPKs %s WARNING:  Quit signal %s received!\\e[0m\\n" "${0##*/}" "$RV"
 	echo exit 221
