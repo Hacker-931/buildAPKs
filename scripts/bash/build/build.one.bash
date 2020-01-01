@@ -54,12 +54,12 @@ _CLEANUP_ () {
 # if working directory is $HOME or buildAPKs exit 
 [ "$PWD" = "$HOME" ] || [ "${PWD##*/}" = buildAPKs ] && exit 224
 printf "\\e[0m\\n\\e[1;38;5;116mBeginning build in %s\\n\\e[0m" "$PWD"
-# if variables are undefined, then define variables
+# if variables are undefined, then define these variables
 [ -z "${DAY:-}" ] && DAY="$(date +%Y%m%d)"
 [ -z "${2:-}" ] && JDR="$PWD"
 [ -z "${JID:-}" ] && JID="${PWD##*/}" # https://www.tldp.org/LDP/abs/html/parameter-substitution.html 
 [ -z "${NUM:-}" ] && NUM=""
-# if does not exist, then create 
+# if it does not exist, then create it 
 [ ! -e "./assets" ] && mkdir -p ./assets
 [ ! -e "./bin" ] && mkdir -p ./bin
 [ ! -e "./gen" ] && mkdir -p ./gen
