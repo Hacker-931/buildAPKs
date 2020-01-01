@@ -48,7 +48,7 @@ _CLEANUP_ () {
  	rm -rf ./bin 
 	rm -rf ./gen 
  	rm -rf ./obj 
-	find . -name R.java -exec rm {} \; ||: 
+	find . -name R.java -exec rm -f { } \;
 	printf "\\e[1;38;5;151mCompleted tasks in %s\\n\\n\\e[0m" "$PWD"
 }
 # if root directory is undefined, define the root directory as ~/buildAPKs 
