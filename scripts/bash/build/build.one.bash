@@ -59,6 +59,7 @@ printf "\\e[0m\\n\\e[1;38;5;116mBeginning build in %s\\n\\e[0m" "$PWD"
 [ -z "${2:-}" ] && JDR="$PWD"
 [ -z "${JID:-}" ] && JID="${PWD##*/}" # https://www.tldp.org/LDP/abs/html/parameter-substitution.html 
 [ -z "${NUM:-}" ] && NUM=""
+# if does not exist, then create 
 [ ! -e "./assets" ] && mkdir -p ./assets
 [ ! -e "./bin" ] && mkdir -p ./bin
 [ ! -e "./gen" ] && mkdir -p ./gen
