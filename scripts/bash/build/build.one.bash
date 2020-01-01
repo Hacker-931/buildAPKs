@@ -42,7 +42,7 @@ trap _SBOTRPSIGNAL_ HUP INT TERM
 trap _SBOTRPQUIT_ QUIT 
 
 _CLEANUP_ () {
-	sleep 0.032 
+	sleep 0.032 # add device latency support 
 	printf "\\e[1;38;5;151m%s\\n\\e[0m" "Completing tasks..."
 	rm -f *-debug.key 
  	rm -rf ./bin ./gen ./obj 
