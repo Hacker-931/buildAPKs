@@ -9,41 +9,17 @@ _SBOTRPERROR_() { # run on script error
 	local RV="$?"
 	echo $RV build.one.bash  
 	printf "\\e[?25h\\e[1;7;38;5;0mbuildAPKs %s build.one.bash ERROR:  Signal %s received!  More information in \`%s/var/log/stnderr.%s.log\` file.\\e[0m\\n" "${0##*/}" "$RV" "$RDR" "$JID" 
-	if [[ "$RV" = 255 ]]
-	then 
-		printf "\\e[?25h\\e[1;7;38;5;0mOn Signal 255 try running %s again if the error includes R.java and similar; This error might have been corrected by clean up.  More information in \`%s/var/log/stnderr.%s.log\` file.\\e[0m\\n" "${0##*/}" "$RDR" "$JID" 
-	fi
+	[ "$RV" = 255 ] && printf "\\e[?25h\\e[1;7;38;5;0mOn Signal 255 try running %s again if the error includes R.java and similar; This error might have been corrected by clean up.  More information in \`%s/var/log/stnderr.%s.log\` file.\\e[0m\\n" "${0##*/}" "$RDR" "$JID" 
  	_CLEANUP_
 	exit 160
 }
 
 _SBOTRPEXIT_() { # run on exit
 	local RV="$?"
-	if [[ "$RV" != 0 ]] &&  [[ "$RV" != 224 ]]  
-	then 
-		printf "\\e[?25h\\e[1;7;38;5;0mbuildAPKs signal %s received by %s in %s by build.one.bash.  More information in \`%s/var/log/stnderr.%s.log\` file.\\n\\n" "$RV" "${0##*/}" "$PWD" "$RDR" "$JID" 
-		printf "%s\\n" "Running: grep -iC 4 ERROR $RDR/var/log/stnderr.$JID.log | tail "
-		grep -iC 4 ERROR "$RDR/var/log/stnderr.$JID.log" | tail 
-		printf "\\e[0m\\n\\n" 
-	fi
-	if [[ "$RV" = 220 ]]  
-	then 
-		printf "\\n\\n\\e[1;7;38;5;143m	Signal %s generated in %s by %s; Downgrading the version of \`ecj\` is a potential solution if this signal was generated while ecj was compiling.  Version ecj/stable,now 4.7.2-2 does not run very well; This might be solved through sharing here https://github.com/termux/termux-packages/pulls and https://github.com/termux/termux-packages/issues/3157 here.  First comment on Dec 20, 2018\\n\\n	More information about keeping a system as stable as possible by downgrading a package when the want arrises is https://sdrausty.github.io/au here.\\n\\n	\`ecj_4.7.2-1\` works better than the version currently in use, so it is included for convience in \`buildAPKs/debs\`.  Use \`dpkg --purge ecj\` followed by \`dpkg --install ecj_4.7.2-1_all.deb\` to downgrade \`ecj\` to a stable version.\\e[0m\\n\\n" "$RV" "$PWD" "${0##*/}" 
-		sleep 4
-	fi
-	if [[ "$RV" = 223 ]]  
-	then 
-		printf "\\e[?25h\\e[1;7;38;5;0mSignal 223 generated in %s; Try running %s again; This error can be resolved by running %s in a directory that has an \`AndroidManifest.xml\` file.  More information in \`stnderr*.log\` files.\\n\\nRunning \`ls\`:\\e[0m\\n" "$PWD" "${0##*/}" "${0##*/}"
-		ls
-	fi
-	if [[ "$RV" = 224 ]]  
-	then 
-		printf "\\e[?25h\\e[1;7;38;5;0mSignal 224 generated in %s;  Cannot run in %s; %s exiting...\\e[0m\\n" "$PWD" "$HOME" "${0##*/} build.one.bash"
-	fi
-	if [[ "$RV" != 224 ]]  
-	then 
- 		_CLEANUP_
-	fi
+	[ "$RV" != 0 ] && [ "$RV" != 224 ] && printf "\\e[?25h\\e[1;7;38;5;0mbuildAPKs signal %s received by %s in %s by build.one.bash.  More information in \`%s/var/log/stnderr.%s.log\` file.\\n\\n" "$RV" "${0##*/}" "$PWD" "$RDR" "$JID" && printf "%s\\n" "Running: grep -iC 4 ERROR $RDR/var/log/stnderr.$JID.log | tail " && $(grep -iC 4 ERROR "$RDR/var/log/stnderr.$JID.log" | tail) && printf "\\e[0m\\n\\n" 
+	[ "$RV" = 223 ] && printf "\\e[?25h\\e[1;7;38;5;0mSignal 223 generated in %s; Try running %s again; This error can be resolved by running %s in a directory that has an \`AndroidManifest.xml\` file.  More information in \`stnderr*.log\` files.\\n\\nRunning \`ls\`:\\e[0m\\n" "$PWD" "${0##*/}" "${0##*/}" && ls
+	[ "$RV" = 224 ] && printf "\\e[?25h\\e[1;7;38;5;0mSignal 224 generated in %s;  Cannot run in %s; %s exiting...\\e[0m\\n" "$PWD" "$HOME" "${0##*/} build.one.bash"
+	[ "$RV" != 224 ] &&  _CLEANUP_
 	printf "\\e[?25h\\e[0m"
 	set +Eeuo pipefail 
 	exit 0
@@ -75,9 +51,10 @@ _CLEANUP_ () {
 	find . -name R.java -exec rm {} \; ||: 
 	printf "\\e[1;38;5;151mCompleted tasks in %s\\n\\n\\e[0m" "$PWD"
 }
-
+# if root directory is undefined, define the root directory as ~/buildAPKs 
 [ -z "${RDR:-}" ] && RDR="$HOME/buildAPKs"
-[ "$PWD" = "$HOME" ] && exit 224
+# if working directory is $HOME or buildAPKs exit 
+[ "$PWD" = "$HOME" ] || [ "${PWD##*/}" = buildAPKs ] && exit 224
 printf "\\e[0m\\n\\e[1;38;5;116mBeginning build in %s\\n\\e[0m" "$PWD"
 [ -z "${DAY:-}" ] && DAY="$(date +%Y%m%d)"
 [ -z "${2:-}" ] && JDR="$PWD"
