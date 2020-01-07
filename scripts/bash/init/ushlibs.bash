@@ -15,7 +15,7 @@ _IRGR_() { # initialize a remote git repository
 }
 
 _ADBGH_() { # add database and github submodules
-	[ -f "$RDR"/opt/db/.git ] && git submodule update --recursive --remote opt/db || submodule add https://github.com/BuildAPKs/db.BuildAPKs opt/db || printf "\\nCannot add module %s into ~/%s/opt/db: Continuing...\\n\\n" "https://github.com/BuildAPKs/db.BuildAPKs" "${RDR##*/}"
+	[ -f "$RDR"/opt/db/.git ] && git submodule update --recursive --remote opt/db || git submodule add https://github.com/BuildAPKs/db.BuildAPKs opt/db || printf "\\nCannot add module %s into ~/%s/opt/db: Continuing...\\n\\n" "https://github.com/BuildAPKs/db.BuildAPKs" "${RDR##*/}"
 	sleep 0.$(shuf -i 24-72 -n 1)
 	[ -f "$RDR"/opt/api/github/.git ] && git submodule update --recursive --remote opt/api/github || git submodule add https://github.com/BuildAPKs/buildAPKs.github opt/api/github || printf "\\nCannot add module %s into ~/%s/opt/api/github: Continuing...\\n\\n" "https://github.com/BuildAPKs/buildAPKs.github" "${RDR##*/}"
 	sleep 0.$(shuf -i 24-72 -n 1)
