@@ -51,6 +51,7 @@ _CLEANUP_ () {
 }
 # if root directory is undefined, define the root directory as ~/buildAPKs 
 [ -z "${RDR:-}" ] && RDR="$HOME/buildAPKs"
+. "$RDR"/scripts/bash/shlibs/buildAPKs/copy.apk.bash
 # if working directory is $HOME or buildAPKs exit 
 [ "$PWD" = "$HOME" ] || [ "${PWD##*/}" = buildAPKs ] && exit 224
 printf "\\e[0m\\n\\e[1;38;5;116mBeginning build in %s\\n\\e[0m" "$PWD"
@@ -154,24 +155,6 @@ aapt add -f "$PKGNAM.apk" classes.dex
 printf "\\e[1;38;5;114m%s\\e[1;38;5;108m\\n" "Signing $PKGNAM.apk..."
 apksigner ../"$PKGNAM-debug.key" "$PKGNAM.apk" ../"$PKGNAM.apk"
 cd ..
-if [[ -w "/storage/emulated/0/" ]] || [[ -w "/storage/emulated/legacy/" ]]
-then
-	if [[ -w "/storage/emulated/0/" ]]
-	then
-		[ ! -d "/storage/emulated/0/Download/builtAPKs/$JID.$DAY" ] && mkdir -p "/storage/emulated/0/Download/builtAPKs/$JID.$DAY"
-		cp "$PKGNAM.apk" "/storage/emulated/0/Download/builtAPKs/$JID.$DAY/$PKGNAME.apk"
-	elif [[ -w "/storage/emulated/legacy/" ]]
-	then
-		[ ! -d "/storage/emulated/legacy/Download/builtAPKs/$JID.$DAY" ] && mkdir -p "/storage/emulated/legacy/Download/builtAPKs/$JID.$DAY"
-		cp "$PKGNAM.apk" "/storage/emulated/legacy/Download/builtAPKs/$JID.$DAY/$PKGNAME.apk"
-	fi
-	printf "\\e[1;38;5;115mCopied %s to Download/builtAPKs/%s/%s.apk\\n" "$PKGNAM.apk" "$JID.$DAY" "$PKGNAME"
-	printf "\\e[1;38;5;149mThe APK %s file can be installed from Download/builtAPKs/%s/%s.apk\\n" "$PKGNAM.apk" "$JID.$DAY" "$PKGNAME"
-else
-	[ ! -d "$RDR/var/cache/builtAPKs/$JID.$DAY" ] && mkdir -p "$RDR/var/cache/builtAPKs/$JID.$DAY"
-	cp "$PKGNAM.apk" "$RDR/var/cache/builtAPKs/$JID.$DAY/$PKGNAME.apk"
-	printf "\\e[1;38;5;120mCopied %s to $RDR/var/cache/builtAPKs/%s/%s.apk\\n" "$PKGNAM.apk" "$JID.$DAY" "$PKGNAME"
-	printf "\\e[1;38;5;154mThe APK %s file can be installed from ~/${RDR##*/}/var/cache/builtAPKs/%s/%s.apk\\n" "$PKGNAM.apk" "$JID.$DAY" "$PKGNAME"
-fi
+_COPYAPK_ || printf "%s\\n" "Unable to copy APK file ${0##*/} build.one.bash; Continuing..." 
 printf "\\e[?25h\\e[1;7;38;5;34mShare %s everwhere%s!\\e[0m\\n" "https://wiki.termux.com/wiki/Development" "🌎🌍🌏🌐"
 # build.one.bash EOF
