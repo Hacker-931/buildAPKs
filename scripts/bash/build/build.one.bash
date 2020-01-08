@@ -121,6 +121,7 @@ else
 	MSDKVERSIO="$(getprop ro.build.version.min_supported_target_sdk)" || printf "%s" "signal ro.build.version.min_supported_target_sdk ${0##*/} build.one.bash generated; Continuing...  " && MSDKVERSIO="14"
 	MSDKVERSION="${MSDKVERSIO:-14}"
  	PSYSLOCAL="$(getprop persist.sys.locale|awk -F- '{print $1}')" || printf "%s" "Signal persist.sys.locale ${0##*/} build.one.bash generated; Continuing...  " && PSYSLOCAL="en"
+ 	PSYSLOCAL="${PSYSLOCAL:-en}"
 	TSDKVERSIO="$(getprop ro.build.version.sdk)" || printf "%s" "Signal ro.build.version.sdk ${0##*/} build.one.bash generated; Continuing...  " && TSDKVERSIO="23"
 	TSDKVERSION="${TSDKVERSIO:-23}"
 fi
