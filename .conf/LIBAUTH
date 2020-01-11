@@ -2,7 +2,7 @@ false
 =========
  English 
 =========
-Change the first line of this file to true to use artifacts and libraries during compilation; When the first line of this file is changed to true, BuildAPKs loads the files in the following folders into the build process from directories located in:
+Change the first line of this file to true to use artifacts and libraries during compilation; When the first line of this file is changed to true, BuildAPKs loads files from the these folders into the build process from directories located in:
 
 /system
 $JDR/lib
@@ -28,7 +28,7 @@ The functionality of this option is being enhanced; and to improve this automati
 =========
  Español 
 =========
-Cambie la primera línea de este archivo a true para usar artefactos y bibliotecas durante la compilación; Cuando la primera línea de esto se cambia a true, BuildAPKs carga los siguientes archivos de carpeta en el proceso de compilación desde directorios ubicados en: 
+Cambie la primera línea de este archivo a true para usar artefactos y bibliotecas durante la compilación; Cuando la primera línea de esto se cambia a true, BuildAPKs carga archivos de la estas carpetas dentro el proceso de compilación en directorios ubicados en:
 
 /system
 $JDR/lib
@@ -55,7 +55,8 @@ Se está mejorando la funcionalidad de esta opción; y para mejorar esta automat
 ===========
  Française 
 ===========
-Modifiez la première ligne de ce fichier sur true pour utiliser des artefacts et des bibliothèques pendant la compilation; Lorsque la première ligne de cette est changé en true, BuildAPKs charge les fichiers de dossier suivants dans le processus de génération à partir de répertoires situés dans:
+Modifiez la première ligne de ce fichier sur true pour utiliser des artefacts et des bibliothèques pendant la compilation; Lorsque la première ligne de cette est changé en true, 
+BuildAPKs charge les fichiers de ceux-ci des dossiers dans le processus de génération à partir de répertoires situés dans:
 
 /system
 $JDR/lib
