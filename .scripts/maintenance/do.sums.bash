@@ -27,6 +27,7 @@ do
 	printf "%s\\n" "Checking $SCHECK..."
 	$SCHECK -c ${SCHECK::-3}.sum
 done
+sed -i '/.\/setup.buildAPKs.bash/d' sha512.sum 
 git add .
 SN="$(sn.sh)" # sn.sh is found in https://github.com/BuildAPKs/maintenance.BuildAPKs/blob/master/sn.sh
 git commit -m "$SN"
