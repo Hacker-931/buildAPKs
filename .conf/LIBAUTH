@@ -55,8 +55,7 @@ Se está mejorando la funcionalidad de esta opción; y para mejorar esta automat
 ===========
  Française 
 ===========
-Modifiez la première ligne de ce fichier sur true pour utiliser des artefacts et des bibliothèques pendant la compilation; Lorsque la première ligne de cette est changé en true, 
-BuildAPKs charge les fichiers de ceux-ci des dossiers dans le processus de génération à partir de répertoires situés dans:
+Modifiez la première ligne de ce fichier sur true pour utiliser des artefacts et des bibliothèques pendant la compilation; Lorsque la première ligne de cette est changé en true, BuildAPKs charge les fichiers de ceux-ci des dossiers dedans le processus de génération à partir de répertoires situés dans:
 
 /system
 $JDR/lib
