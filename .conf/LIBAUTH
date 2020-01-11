@@ -2,7 +2,7 @@ false
 =========
  English 
 =========
-Change the first line of this file to true to use artifacts and libraries during compilation; When the first line of this file is changed to true, BuildAPKs loads files from the these folders into the build process from directories located in:
+Change the first line of this file to true to use artifacts and libraries during compilation; When the first line of this file is changed to true, BuildAPKs loads files from these folders into the build process from directories located in:
 
 /system
 $JDR/lib
