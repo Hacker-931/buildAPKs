@@ -30,8 +30,6 @@ done
 sha512sum .conf/GAUTH > .conf/${SCHECK::-3}.sum
 sha512sum .conf/LIBAUTH >> .conf/${SCHECK::-3}.sum
 sed -i '/.\/setup.buildAPKs.bash/d' sha512.sum 
-sed -i '/GAUTH/d' sha512.sum 
-sed -i '/LIBAUTH/d' sha512.sum 
 git add .
 SN="$(sn.sh)" # sn.sh is found in https://github.com/BuildAPKs/maintenance.BuildAPKs/blob/master/sn.sh
 git commit -m "$SN"
