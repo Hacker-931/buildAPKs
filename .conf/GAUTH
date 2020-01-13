@@ -7,7 +7,7 @@ This command ` grep -C 4 -hr AUT ~/buildAPKs/scripts/ ` shows how the user token
 
 To clear the "Please commit your changes or stash them before you merge" message after trying to update with ` ~/buildAPKs/update.buildAPKs.sh ` a solution is to use these shell commands:
 ```
-mv ~/buildAPKs/.config/GAUTH ~/buildAPKs/stash/GAUTH
+mv ~/buildAPKs/.conf/GAUTH ~/buildAPKs/stash/GAUTH
 ```
 After moving this file, run ` ~/buildAPKs/update.buildAPKs.sh ` again.  To add the OAuth username token pair (user:token) again to the newly updated file use these shell commands:
 ```
