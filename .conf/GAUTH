@@ -11,9 +11,9 @@ To clear the "Please commit your changes or stash them before you merge" message
 ```
 mv ~/buildAPKs/.conf/GAUTH ~/buildAPKs/stash/GAUTH
 ```
-After moving this file, run ` ~/buildAPKs/update.buildAPKs.sh ` again.  To add the OAuth username token pair (user:token) again to the newly updated file use these shell commands:
+After moving this file, run ` ~/buildAPKs/update.buildAPKs.sh ` again.  To add the OAuth username token pair (user:token) again to the newly updated file from the stashed GAUUTH file, you can use these shell commands (hint: copy and paste):
 ```
 (head -1 ~/buildAPKs/stash/GAUTH && cat ~/buildAPKs/.conf/GAUTH) > ~/buildAPKs/var/tmp/GAUTH.$$.tmp && mv ~/buildAPKs/var/tmp/GAUTH.$$.tmp ~/buildAPKs/.conf/GAUTH
 ```
-Add the OAuth username token pair (user:token) from the copied ~/buildAPKs/stash/GAUTH file to the newly updated GAUTH file. 
+This will add the OAuth token from the copied ~/buildAPKs/stash/GAUTH file to the first line of the newly updated GAUTH file. 
 # GAUTH EOF
