@@ -1,4 +1,4 @@
-<link rel="prerender" href="https://termuxarch.github.io/TermuxArch/">
+<link rel="prerender" href="https://buildapks.github.io/buildAPKs/">
 
 ## [buildAPKs](https://github.com/BuildAPKs/buildAPKs)
 
