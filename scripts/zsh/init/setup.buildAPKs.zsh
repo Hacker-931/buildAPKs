@@ -1,4 +1,4 @@
-#!/bin/env zsh 
+#!/usr/bin/env zsh 
 # Copyright 2019 (c) all rights reserved 
 # by BuildAPKs https://buildapks.github.io/buildAPKs/
 # Invocation : ~/buildAPKs/scripts/zsh/init/setup.BuildAPKs.zsh  

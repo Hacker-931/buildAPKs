@@ -1,4 +1,4 @@
-#!/bin/env sh 
+#!/usr/bin/env sh 
 # Copyright 2019 (c) all rights reserved 
 # by BuildAPKs https://buildapks.github.io/buildAPKs/
 # Invocation: ~/buildAPKs/scripts/sh/init/setup.BuildAPKs.sh 
